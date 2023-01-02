@@ -16,12 +16,12 @@ RUN rpm --import https://www.bacula.org/downloads/Bacula-4096-Distribution-Verif
 
 COPY bacula-community.repo /etc/yum.repos.d/bacula-community.repo
 
-RUN echo ${BACULA_VERSION}
-RUN echo ${BACULA_KEY}
+RUN echo $BACULA_VERSION
+RUN echo $BACULA_KEY
 
-RUN sed -i "s/BACULA_VERSION/$(echo ${BACULA_VERSION})/g" /etc/yum.repos.d/bacula-community.repo \
-  && sed -i "s/BACULA_KEY/$(echo ${BACULA_KEY})/g" /etc/yum.repos.d/bacula-community.repo \
-  && sed -i "s/EL_VERSION/$(echo el${EL})/g" /etc/yum.repos.d/bacula-community.repo \
+RUN sed -i "s/BACULA_VERSION/$(echo $BACULA_VERSION)/g" /etc/yum.repos.d/bacula-community.repo \
+  && sed -i "s/BACULA_KEY/$(echo $BACULA_KEY)/g" /etc/yum.repos.d/bacula-community.repo \
+  && sed -i "s/EL_VERSION/$(echo el$EL)/g" /etc/yum.repos.d/bacula-community.repo \
   && cat /etc/yum.repos.d/bacula-community.repo
 
 RUN rpm -i https://download.postgresql.org/pub/repos/yum/reporpms/EL-${EL}-x86_64/pgdg-redhat-repo-latest.noarch.rpm
@@ -38,7 +38,7 @@ RUN dnf update -y \
 	zip \
 	bzip2 \
 	mtx \
-    bacula-postgresql-${BACULA_VERSION} \
+    bacula-postgresql-$BACULA_VERSION \
     --exclude=bacula-mysql \
     && dnf -y clean all && rm -rf /var/cache/yum
 
