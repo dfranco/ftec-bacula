@@ -10,6 +10,8 @@ RUN rpm --import https://www.bacula.org/downloads/Bacula-4096-Distribution-Verif
 
 COPY bacula-community.repo /etc/yum.repos.d/bacula-community.repo
 
+RUN echo ${BACULA_VERSION}
+
 RUN sed -i "s/BACULA_VERSION/$(echo ${BACULA_VERSION})/g" /etc/yum.repos.d/bacula-community.repo \
   && sed -i "s/BACULA_KEY/$(echo ${BACULA_KEY})/g" /etc/yum.repos.d/bacula-community.repo \
   && cat /etc/yum.repos.d/bacula-community.repo
