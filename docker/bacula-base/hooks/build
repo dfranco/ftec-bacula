@@ -14,7 +14,7 @@ docker build \
     --build-arg BACULA_KEY \
     --build-arg BACULA_VERSION \
     --build-arg EMAIL \
-    --build-arg EL \
+    --build-arg EL_VERSION \
     --build-arg SOURCE_BRANCH \
     --build-arg SOURCE_COMMIT \
     --build-arg COMMIT_MSG \
