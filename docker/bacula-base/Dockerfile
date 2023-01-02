@@ -18,9 +18,9 @@ COPY bacula-community.repo /etc/yum.repos.d/bacula-community.repo
 RUN echo $BACULA_VERSION
 RUN echo $BACULA_KEY
 
-RUN sed -i "s/BACULA_VERSION/$(echo $BACULA_VERSION)/g" /etc/yum.repos.d/bacula-community.repo \
-  && sed -i "s/BACULA_KEY/$(echo $BACULA_KEY)/g" /etc/yum.repos.d/bacula-community.repo \
-  && sed -i "s/EL_VERSION/$(echo el$EL)/g" /etc/yum.repos.d/bacula-community.repo \
+RUN sed -i "s/BACULA_VERSION/$BACULA_VERSION/g" /etc/yum.repos.d/bacula-community.repo \
+  && sed -i "s/BACULA_KEY/$BACULA_KEY/g" /etc/yum.repos.d/bacula-community.repo \
+  && sed -i "s/EL_VERSION/$EL/g" /etc/yum.repos.d/bacula-community.repo \
   && cat /etc/yum.repos.d/bacula-community.repo
 
 RUN rpm -i https://download.postgresql.org/pub/repos/yum/reporpms/EL-${EL}-x86_64/pgdg-redhat-repo-latest.noarch.rpm
