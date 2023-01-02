@@ -2,12 +2,12 @@ FROM centos:8
 
 MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
 
-ENV BACULA_VERSION 13.0.1
+ARG BACULA_VERSION="13.0.1"
 
 # get your key on: https://www.bacula.org/bacula-binary-package-download/
-ENV BACULA_KEY=""
+ARG BACULA_KEY="YOU MUST PASS IN A BACULA KEY"
 
-ENV EMAIL suporte@fametec.com.br
+ARG EMAIL="paul+ftec-bacula@gpmidi.net"
 
 RUN rpm --import https://www.bacula.org/downloads/Bacula-4096-Distribution-Verification-key.asc
 
