@@ -10,18 +10,18 @@ env
 echo "Building..."
 
 docker build \
-    --build-arg SOURCE_COMMIT="$SOURCE_COMMIT" \
-    --build-arg BACULA_KEY="$BACULA_KEY" \
-    --build-arg BACULA_VERSION="$BACULA_VERSION" \
-    --build-arg EMAIL="$EMAIL" \
-    --build-arg EL="$EL" \
-    --build-arg SOURCE_BRANCH="$SOURCE_BRANCH" \
-    --build-arg SOURCE_COMMIT="$SOURCE_COMMIT" \
-    --build-arg COMMIT_MSG="${COMMIT_MSG}" \
-    --build-arg IMAGE_NAME="${IMAGE_NAME}" \
-    --build-arg DOCKER_TAG="${DOCKER_TAG}" \
-    --build-arg DOCKERFILE_PATH="${DOCKERFILE_PATH}" \
-    --build-arg DOCKER_REPO="${DOCKER_REPO}" \
+    --build-arg SOURCE_COMMIT \
+    --build-arg BACULA_KEY \
+    --build-arg BACULA_VERSION \
+    --build-arg EMAIL \
+    --build-arg EL \
+    --build-arg SOURCE_BRANCH \
+    --build-arg SOURCE_COMMIT \
+    --build-arg COMMIT_MSG \
+    --build-arg IMAGE_NAME \
+    --build-arg DOCKER_TAG \
+    --build-arg DOCKERFILE_PATH \
+    --build-arg DOCKER_REPO \
     -f "${DOCKERFILE_PATH}" \
     -t "${IMAGE_NAME}" \
     .
