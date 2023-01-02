@@ -30,7 +30,7 @@ RUN dnf -y install \
 	mtx 
 
 RUN dnf install -y bacula-postgresql-$BACULA_VERSION --exclude=bacula-mysql
-
+# TODO: Need to move this all into one big RUN so this cleans up right
 RUN dnf -y clean all && rm -rf /var/cache/yum
 
 RUN for i in `ls /opt/bacula/bin`; do ln -s /opt/bacula/bin/$i /usr/sbin/$i; done 
