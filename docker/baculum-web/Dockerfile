@@ -1,16 +1,13 @@
-FROM registry-1.docker.io/gpmidi/ftec-bacula:base-latest
-
+FROM gpmidi/bacula-base:latest
 MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
 
 RUN rpm --import https://www.bacula.org/downloads/baculum/baculum.pub
 
 COPY baculum.repo /etc/yum.repos.d/baculum.repo
 
-RUN yum install -y \
-	epel-release \
-        yum-utils
+RUN dnf install -y yum-utils
 
-RUN yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+RUN yum install -y https://rpms.remirepo.net/enterprise/remi-release-$EL_VERSION.rpm
 
 RUN yum-config-manager --enable remi-php73
 
