@@ -5,7 +5,7 @@ MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
 ENV BACULA_VERSION 13.0.1
 
 # get your key on: https://www.bacula.org/bacula-binary-package-download/
-ENV BACULA_KEY xxxxxxxxx
+ENV BACULA_KEY
 
 ENV EMAIL suporte@fametec.com.br
 
