@@ -10,27 +10,26 @@ RUN rpm --import https://www.bacula.org/downloads/Bacula-4096-Distribution-Verif
 
 COPY bacula-community.repo /etc/yum.repos.d/bacula-community.repo
 
-RUN sed -i s/BACULA_VERSION/$(echo ${BACULA_VERSION})/g /etc/yum.repos.d/bacula-community.repo \
-  && sed -i s/BACULA_KEY/$(echo ${BACULA_KEY})/g /etc/yum.repos.d/bacula-community.repo
+RUN sed -i "s/BACULA_VERSION/$(echo ${BACULA_VERSION})/g" /etc/yum.repos.d/bacula-community.repo \
+  && sed -i "s/BACULA_KEY/$(echo ${BACULA_KEY})/g" /etc/yum.repos.d/bacula-community.repo \
+  && cat /etc/yum.repos.d/bacula-community.repo
 
 RUN rpm -i https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 
 RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
 RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
 
-RUN dnf update -y
-
-RUN dnf -y install epel-release
-RUN dnf config-manager --set-enabled PowerTools
 # RUN dnf -y install postgresql \
-RUN dnf -y install \
+RUN dnf update -y \
+    && dnf -y install epel-release \
+    && dnf config-manager --set-enabled PowerTools \
+    && dnf -y install \
 	postgresql10 \
 	zip \
 	bzip2 \
-	mtx 
-
-RUN dnf install -y bacula-postgresql-$BACULA_VERSION --exclude=bacula-mysql
-# TODO: Need to move this all into one big RUN so this cleans up right
-RUN dnf -y clean all && rm -rf /var/cache/yum
+	mtx \
+    bacula-postgresql-${BACULA_VERSION} \
+    --exclude=bacula-mysql \
+    && dnf -y clean all && rm -rf /var/cache/yum
 
 RUN for i in `ls /opt/bacula/bin`; do ln -s /opt/bacula/bin/$i /usr/sbin/$i; done 
