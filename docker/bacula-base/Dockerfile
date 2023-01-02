@@ -10,10 +10,10 @@ RUN rpm --import https://www.bacula.org/downloads/Bacula-4096-Distribution-Verif
 
 COPY bacula-community.repo /etc/yum.repos.d/bacula-community.repo
 
-RUN sed -i s/BACULA_VERSION/$(echo $BACULA_VERSION)/g /etc/yum.repos.d/bacula-community.repo \
-  && sed -i s/BACULA_KEY/$(echo $BACULA_KEY)/g /etc/yum.repos.d/bacula-community.repo
+RUN sed -i s/BACULA_VERSION/$(echo ${BACULA_VERSION})/g /etc/yum.repos.d/bacula-community.repo \
+  && sed -i s/BACULA_KEY/$(echo ${BACULA_KEY})/g /etc/yum.repos.d/bacula-community.repo
 
-RUN rpm -i https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+RUN rpm -i https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 
 RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
 RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
