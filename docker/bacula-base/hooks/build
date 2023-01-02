@@ -2,6 +2,13 @@
 set -e 
 set -x
 
+echo "Debug info..."
+date
+pwd
+env
+
+echo "Building..."
+
 docker build \
     --build-arg SOURCE_COMMIT="$SOURCE_COMMIT" \
     --build-arg BACULA_KEY="$BACULA_KEY" \
@@ -18,5 +25,7 @@ docker build \
     -f "${DOCKERFILE_PATH}" \
     -t "${IMAGE_NAME}" \
     .
+
+echo "Build ok..."
 
 exit 0
