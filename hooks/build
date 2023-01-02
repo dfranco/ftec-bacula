@@ -7,7 +7,7 @@ docker build \
     --build-arg SOURCE_BRANCH="$SOURCE_BRANCH" \
     --build-arg SOURCE_COMMIT="$SOURCE_COMMIT" \
     --build-arg COMMIT_MSG="${COMMIT_MSG}" \
-    -f $DOCKERFILE_PATH \
-    -t $IMAGE_NAME \
+    -f "${DOCKERFILE_PATH}" \
+    -t "${IMAGE_NAME}" \
     .
 exit 0
