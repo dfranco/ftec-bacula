@@ -10,7 +10,6 @@ ARG EMAIL=paul+ftec-bacula@gpmidi.net
 ENV BACULA_KEY $BACULA_KEY
 ENV BACULA_VERSION $BACULA_VERSION
 ENV EMAIL $EMAIL
-ENV EL $EL
 
 RUN rpm --import https://www.bacula.org/downloads/Bacula-4096-Distribution-Verification-key.asc
 
