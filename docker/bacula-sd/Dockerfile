@@ -1,4 +1,4 @@
-FROM fametec/bacula-base:11.0.5
+FROM registry-1.docker.io/gpmidi/ftec-bacula:base-latest
 
 RUN yum install -y bacula-cloud-storage --exclude=bacula-mysql
 

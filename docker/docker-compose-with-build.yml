@@ -4,7 +4,7 @@ services:
 
   base: 
     build: bacula-base/
-    image: fametec/bacula-base:11.0.5
+    image: registry-1.docker.io/gpmidi/ftec-bacula:base-latest
 #    
   db:
     build: bacula-catalog/

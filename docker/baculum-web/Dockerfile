@@ -1,6 +1,6 @@
-FROM fametec/bacula-base:11.0.5
+FROM registry-1.docker.io/gpmidi/ftec-bacula:base-latest
 
-MAINTAINER eduardo@fametec.com.br
+MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
 
 RUN rpm --import https://www.bacula.org/downloads/baculum/baculum.pub
 
