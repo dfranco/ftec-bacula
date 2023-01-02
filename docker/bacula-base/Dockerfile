@@ -1,6 +1,10 @@
 FROM centos:8
 
 MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
+# get your key on: https://www.bacula.org/bacula-binary-package-download/
+ARG BACULA_KEY
+ARG BACULA_VERSION
+ARG EMAIL
 
 RUN rpm --import https://www.bacula.org/downloads/Bacula-4096-Distribution-Verification-key.asc
 
