@@ -18,17 +18,17 @@ RUN sed -i s/BACULA_VERSION/$(echo $BACULA_VERSION)/g /etc/yum.repos.d/bacula-co
 
 RUN rpm -i https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 
-RUN yum -y install epel-release
-
+RUN dnf -y install epel-release
+RUN dnf config-manager --set-enabled PowerTools
 # RUN dnf -y install postgresql \
-RUN yum -y install \
+RUN dnf -y install \
 	postgresql10 \
 	zip \
 	bzip2 \
 	mtx 
 
-RUN yum install -y bacula-postgresql-$BACULA_VERSION --exclude=bacula-mysql
+RUN dnf install -y bacula-postgresql-$BACULA_VERSION --exclude=bacula-mysql
 
-RUN yum -y clean all && rm -rf /var/cache/yum
+RUN dnf -y clean all && rm -rf /var/cache/yum
 
 RUN for i in `ls /opt/bacula/bin`; do ln -s /opt/bacula/bin/$i /usr/sbin/$i; done 
