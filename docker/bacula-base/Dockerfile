@@ -2,10 +2,10 @@
 ARG BACULA_KEY
 # Bacula version
 ARG BACULA_VERSION
-ARG EMAIL="paul+ftec-bacula@gpmidi.net"
-ARG EL="8"
+ARG EMAIL=paul+ftec-bacula@gpmidi.net
+ARG EL=8
 
-FROM centos:$EL
+FROM centos:${EL}
 MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
 ENV BACULA_KEY $BACULA_KEY
 ENV BACULA_VERSION $BACULA_VERSION
