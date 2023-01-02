@@ -31,6 +31,7 @@ RUN dnf update -y \
  && dnf -y install epel-release \
  && dnf -y install \
       postgresql \
+      postgresql15-libs \
       zip \
       bzip2 \
       mtx \
