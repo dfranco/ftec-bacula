@@ -17,7 +17,8 @@ RUN rpm -i https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pg
 
 RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
 RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-RUN yum update -y
+
+RUN dnf update -y
 
 RUN dnf -y install epel-release
 RUN dnf config-manager --set-enabled PowerTools
