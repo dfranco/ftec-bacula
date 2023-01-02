@@ -5,8 +5,8 @@ RUN rpm --import https://www.bacula.org/downloads/baculum/baculum.pub
 COPY baculum.repo /etc/yum.repos.d/baculum.repo
 
 RUN dnf install -y yum-utils
-RUN dnf install -y https://rpms.remirepo.net/enterprise/remi-release-$EL_VERSION.rpm
-RUN yum-config-manager --enable remi-php73
+RUN dnf install -y https://rpms.remirepo.net/enterprise/remi-release-$EL_VERSION.5.rpm
+RUN yum-config-manager --enable remi
 RUN dnf install -y \
 	sudo \
 	php-fpm \
