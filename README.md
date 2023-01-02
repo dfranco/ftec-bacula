@@ -4,14 +4,14 @@ Deploy the bacula community edition on Docker Containers.
 
 ## Images
 
-- [x] Bacula Catalog                    gpmidi/bacula-catalog:11.0.5
-- [x] Bacula Director                   gpmidi/bacula-director:11.0.5
-- [x] Bacula Storage Daemon             gpmidi/bacula-storage:11.0.5
-- [x] Bacula File Daemon                gpmidi/bacula-client:11.0.5
-- [x] Baculum Web Gui                   gpmidi/baculum-web:11.0.5 (NEW)
-- [x] Baculum API                       gpmidi/baculum-api:11.0.5 (NEW)
-- [x] Postfix SMTP Relay                gpmidi/postfix:latest
-- [x] SMTP2TG SMTP Relay to Telegram    b3vis/docker-smtp2tg
+- [x] Bacula Catalog                    gpmidi/bacula-catalog:13.0.1
+- [x] Bacula Director                   gpmidi/bacula-director:13.0.1
+- [x] Bacula Storage Daemon             gpmidi/bacula-storage:13.0.1
+- [x] Bacula File Daemon                gpmidi/bacula-client:13.0.1
+- [x] Baculum Web Gui                   gpmidi/baculum-web:13.0.1
+- [x] Baculum API                       gpmidi/baculum-api:13.0.1
+- [ ] Postfix SMTP Relay                FIXME
+- [ ] SMTP2TG SMTP Relay to Telegram    FIXME
 
 ## Install Docker 
 
@@ -24,7 +24,7 @@ Deploy the bacula community edition on Docker Containers.
 
 ## Download and Install Bacula Container
 
-    git clone https://github.com/fametec/bacula
+    git clone https://github.com/gpmidi/bacula
     cd bacula/docker
     docker-compose up
 
@@ -48,7 +48,7 @@ docker-compose.yaml
     version: '3.1'
     services:
       db:
-        image: fametec/bacula-catalog:11.0.5
+        image: gpmidi/bacula-catalog:13.0.1
         restart: unless-stopped
         environment:
           POSTGRES_PASSWORD: bacula
@@ -59,7 +59,7 @@ docker-compose.yaml
         ports:
           - 5432
       bacula-dir:
-        image: fametec/bacula-director:11.0.5
+        image: gpmidi/bacula-director:13.0.1
         restart: unless-stopped
         volumes:
           - ./etc/bacula-dir.conf:/opt/bacula/etc/bacula-dir.conf:ro
@@ -69,7 +69,7 @@ docker-compose.yaml
         ports:
           - 9101
       bacula-sd:
-        image: fametec/bacula-storage:11.0.5
+        image: gpmidi/bacula-storage:13.0.1
         restart: unless-stopped
         depends_on:
           - bacula-dir
@@ -79,7 +79,7 @@ docker-compose.yaml
         ports:
           - 9103
       bacula-fd:
-        image: fametec/bacula-client:11.0.5
+        image: gpmidi/bacula-client:13.0.1
         restart: unless-stopped
         depends_on:
           - bacula-sd
@@ -91,21 +91,10 @@ docker-compose.yaml
     volumes:
       pgdata:
 
-## Support
-
-For technical support please contact us. 
-
-suporte@fametec.com.br
-
-## e-Learning 
-
-https://www.fametec.com.br
-
 
 ## Reference
 
-http://www.bacula.lat/community/baculum/ 
-
-http://www.bacula.lat/community/script-instalacao-bacula-community-9-x-pacotes-oficiais/
-
-https://www.bacula.org/documentation/documentation/
+* https://github.com/fametec/bacula
+* http://www.bacula.lat/community/baculum/ 
+* http://www.bacula.lat/community/script-instalacao-bacula-community-9-x-pacotes-oficiais/
+* https://www.bacula.org/documentation/documentation/
