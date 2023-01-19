@@ -28,11 +28,10 @@ RUN sed -i "s/BACULA_VERSION/$BACULA_VERSION/g" /etc/yum.repos.d/bacula-communit
 RUN EL="$EL_VERSION" && dnf install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${EL}-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
 
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG \
- && dnf update -y \
+ && dnf search postgresql15 -y \
  && dnf -y install epel-release \
+ && dnf update -y \
  && dnf -y install \
-      postgresql15 \
-      postgresql15-contrib \
       postgresql15-devel \
       postgresql15-libs \
       zip \
@@ -40,7 +39,6 @@ RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG \
       mtx \
       bacula-postgresql-$BACULA_VERSION \
       --exclude=bacula-mysql \
- && dnf update -y \
  && dnf -y clean all && rm -rf /var/cache/yum
 
 RUN for i in `ls /opt/bacula/bin`; do ln -s /opt/bacula/bin/$i /usr/sbin/$i; done 
