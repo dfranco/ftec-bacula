@@ -30,7 +30,7 @@ RUN EL="$EL_VERSION" && dnf install -y "https://download.postgresql.org/pub/repo
 RUN dnf update -y \
  && dnf -y install epel-release \
  && dnf -y install \
-      postgresql \
+      postgresql15 \
       postgresql15-libs \
       zip \
       bzip2 \
