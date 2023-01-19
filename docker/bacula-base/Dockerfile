@@ -28,6 +28,7 @@ RUN sed -i "s/BACULA_VERSION/$BACULA_VERSION/g" /etc/yum.repos.d/bacula-communit
 RUN EL="$EL_VERSION" && dnf install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${EL}-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
 
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG \
+ && dnf config-manager --set-enabled "pgdg15" \
  && dnf update -y \
  && dnf -y install epel-release \
  && dnf -y install \
