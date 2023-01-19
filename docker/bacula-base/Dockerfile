@@ -1,7 +1,7 @@
 ARG EL_VERSION="8"
-FROM centos:${EL_VERSION}
+FROM rockylinux/rockylinux:${EL_VERSION}
 MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
-# EntLinux Version (ie 7 or 8)
+# Enterprise Linux Version (ie 7 or 8)
 ARG EL_VERSION
 # get your key on: https://www.bacula.org/bacula-binary-package-download/
 ARG BACULA_KEY
