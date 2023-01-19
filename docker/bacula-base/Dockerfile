@@ -40,6 +40,7 @@ RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG \
       mtx \
       bacula-postgresql-$BACULA_VERSION \
       --exclude=bacula-mysql \
+ && dnf update -y \
  && dnf -y clean all && rm -rf /var/cache/yum
 
 RUN for i in `ls /opt/bacula/bin`; do ln -s /opt/bacula/bin/$i /usr/sbin/$i; done 
