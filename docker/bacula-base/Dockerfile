@@ -31,7 +31,9 @@ RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG \
  && dnf update -y \
  && dnf -y install epel-release \
  && dnf -y install \
-      postgresql15-clients \
+      postgresql15 \
+      postgresql15-contrib \
+      postgresql15-devel \
       postgresql15-libs \
       zip \
       bzip2 \
