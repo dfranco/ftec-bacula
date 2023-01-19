@@ -20,12 +20,13 @@ RUN sed -i "s/BACULA_VERSION/$BACULA_VERSION/g" /etc/yum.repos.d/bacula-communit
  && sed -i "s/EL_VERSION/$EL_VERSION/g" /etc/yum.repos.d/bacula-community.repo
 RUN export EL=$EL_VERSION && dnf install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${EL}-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
 
+RUN dnf module enable postgresql:15
 # RUN dnf -y install postgresql \
 RUN dnf update -y \
     && dnf -y install epel-release \
     && dnf config-manager --set-enabled PowerTools \
     && dnf -y install \
-	postgresql10 \
+	postgresql15 \
 	zip \
 	bzip2 \
 	mtx \
