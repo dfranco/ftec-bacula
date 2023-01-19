@@ -1,4 +1,4 @@
-FROM registry-1.docker.io/gpmidi/ftec-bacula:base-latest AS base
+FROM gpmidi/bacula-base:latest AS base
 
 FROM postgres:15
 

@@ -3,29 +3,31 @@ version: '3.1'
 services:
 
   db:
-    image: gpmidi/bacula-catalog:11.0.5
+    image: gpmidi/bacula-catalog:latest
     restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: bacula
       POSTGRES_USER: bacula
       POSTGRES_DB: bacula
-    # volumes:
-    #   - pgdata:/var/lib/postgresql/data:rw
+    volumes:
+      - type: bind
+        source: ./pgdata
+        target: /var/lib/postgresql/data:rw
     ports:
-      - 5432:5432
+      - "5432:5432"
 #
   bacula-dir:
-    image: gpmidi/bacula-director:11.0.5
+    image: gpmidi/bacula-director:latest
     restart: unless-stopped
     volumes:
       - ./etc:/opt/bacula/etc:ro
-    depends_on: 
-      - db      
+    depends_on:
+      - db
     ports:
-      - 9101:9101
+      - "9101:9101"
 #
   bacula-sd:
-    image: gpmidi/bacula-storage:11.0.5
+    image: gpmidi/bacula-storage:latest
     restart: unless-stopped
     depends_on:
       - bacula-dir
@@ -33,10 +35,10 @@ services:
     volumes:
       - ./etc:/opt/bacula/etc:ro
     ports:
-      - 9103:9103
+      - "9103:9103"
 #
   bacula-fd:
-    image: gpmidi/bacula-client:11.0.5
+    image: gpmidi/bacula-client:latest
     restart: unless-stopped
     depends_on:
       - bacula-sd
@@ -45,57 +47,31 @@ services:
     volumes:
       - ./etc:/opt/bacula/etc:ro
     ports:
-      - 9102:9102
+      - "9102:9102"
 #
   baculum-api:
-    image: fametec/baculum-api:11.0.5
+    image: gpmidi/baculum-api:latest
     restart: unless-stopped
-    depends_on: 
+    depends_on:
       - db
       - bacula-dir
     volumes:
       - ./etc/bconsole.conf:/opt/bacula/etc/bconsole.conf:ro
       - ./etc/baculum:/etc/baculum:rw
     ports:
-      - 9096:9096
+      - "9096:9096"
 
 #
   baculum-web:
-    image: fametec/baculum-web:11.0.5
+    image: gpmidi/baculum-web:latest
     restart: unless-stopped
-    depends_on: 
+    depends_on:
       - baculum-api
     volumes:
       - ./etc/bconsole.conf:/opt/bacula/etc/bconsole.conf:ro
       - ./etc/baculum:/etc/baculum:rw
     ports:
-      - 9095:9095
+      - "9095:9095"
 
-# 
-#volumes: 
-#  pgdata:
-#
-#  gmail:
-#    image: fametec/postfix:gmail
-#    restart: unless-stopped
-#    depends_on:
-#      - bacula-dir
-#    # ports:
-#    #  - 30025:25
-#    environment:
-#      GMAIL_USER: xxxxxxxx
-#      GMAIL_PASS: xxxxxxxx
-#
-#  smtp2tg:
-#    image: b3vis/docker-smtp2tg
-#    restart: unless-stopped
-#    volumes:
-#      - ./etc/smtp2tg.toml:/config/smtp2tg.toml:ro
-#    #    ports:
-#    #  - "31025:25"
-#    depends_on:
-#      - bacula-dir
-#
-# 
-#volumes: 
+#volumes:
 #  pgdata:

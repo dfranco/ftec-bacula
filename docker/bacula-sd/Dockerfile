@@ -1,4 +1,5 @@
-FROM registry-1.docker.io/gpmidi/ftec-bacula:base-latest
+FROM gpmidi/bacula-base:latest
+MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
 
 RUN yum install -y bacula-cloud-storage --exclude=bacula-mysql
 

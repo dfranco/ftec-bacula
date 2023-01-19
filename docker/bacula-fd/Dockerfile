@@ -1,4 +1,5 @@
-FROM registry-1.docker.io/gpmidi/ftec-bacula:base-latest
+FROM gpmidi/bacula-base:latest
+MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
 
 VOLUME ["/opt/bacula/etc"]
 
