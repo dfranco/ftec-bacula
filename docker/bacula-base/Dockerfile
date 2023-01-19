@@ -18,8 +18,8 @@ RUN rpm --import https://www.bacula.org/downloads/Bacula-4096-Distribution-Verif
 
 COPY bacula-community.repo /etc/yum.repos.d/bacula-community.repo
 
-RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+#RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+#RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
 
 RUN sed -i "s/BACULA_VERSION/$BACULA_VERSION/g" /etc/yum.repos.d/bacula-community.repo \
  && sed -i "s/BACULA_KEY/$BACULA_KEY/g" /etc/yum.repos.d/bacula-community.repo \
@@ -28,18 +28,20 @@ RUN sed -i "s/BACULA_VERSION/$BACULA_VERSION/g" /etc/yum.repos.d/bacula-communit
 RUN EL="$EL_VERSION" && dnf install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${EL}-x86_64/pgdg-redhat-repo-latest.noarch.rpm"
 
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG \
- && dnf search postgresql15 -y \
+ && dnf -qy module disable postgresql \
  && dnf -y install epel-release \
- && dnf update -y \
- && dnf -y install \
+ && dnf update -qy \
+ && dnf -qy install \
       postgresql15-devel \
+      postgresql15 \
+      postgresql15-contrib \
       postgresql15-libs \
       zip \
       bzip2 \
       mtx \
       bacula-postgresql-$BACULA_VERSION \
       --exclude=bacula-mysql \
- && dnf -y clean all && rm -rf /var/cache/yum
+ && dnf -qy clean all && rm -rf /var/cache/yum
 
 RUN for i in `ls /opt/bacula/bin`; do ln -s /opt/bacula/bin/$i /usr/sbin/$i; done 
 
