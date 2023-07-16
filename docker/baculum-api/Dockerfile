@@ -1,6 +1,6 @@
 FROM gpmidi/bacula-base:latest
 MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
-ARG EL_VERSION="8"
+ARG EL_VERSION="9"
 
 RUN rpm --import https://www.bacula.org/downloads/baculum/baculum.pub
 COPY baculum.repo /etc/yum.repos.d/baculum.repo

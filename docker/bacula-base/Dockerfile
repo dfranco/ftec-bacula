@@ -1,4 +1,4 @@
-ARG EL_VERSION="8"
+ARG EL_VERSION="9"
 FROM rockylinux/rockylinux:${EL_VERSION}
 MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
 # Enterprise Linux Version (ex 7, 8, 9)
