@@ -27,6 +27,7 @@ RUN EL="$EL_VERSION" && dnf install -y "https://download.postgresql.org/pub/repo
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG \
  && dnf -qy module disable postgresql \
  && dnf -y install epel-release \
+ && dnf --enablerepo=powertools install perl-IPC-Run -y \
  && dnf update -qy \
  && dnf -qy install \
       postgresql15-devel \
