@@ -8,7 +8,7 @@ services:
 #    
   db:
     build: bacula-catalog/
-    image: gpmidi/bacula-catalog:13.0.1
+    image: gpmidi/bacula-catalog:13.0.3
     restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: bacula
@@ -21,7 +21,7 @@ services:
 #
   bacula-dir:
     build: bacula-dir/
-    image: gpmidi/bacula-director:13.0.1
+    image: gpmidi/bacula-director:13.0.3
     restart: unless-stopped
     volumes:
       - ./etc:/opt/bacula/etc:ro
@@ -32,7 +32,7 @@ services:
 #
   bacula-sd:
     build: bacula-sd/
-    image: gpmidi/bacula-storage:13.0.1
+    image: gpmidi/bacula-storage:13.0.3
     restart: unless-stopped
     depends_on:
       - bacula-dir
@@ -44,7 +44,7 @@ services:
 #
   bacula-fd:
     build: bacula-fd/
-    image: gpmidi/bacula-client:13.0.1
+    image: gpmidi/bacula-client:13.0.3
     restart: unless-stopped
     depends_on:
       - bacula-sd
@@ -57,7 +57,7 @@ services:
 #
   baculum-api:
     build: baculum-api/
-    image: gpmidi/baculum-api:13.0.1
+    image: gpmidi/baculum-api:13.0.3
     restart: unless-stopped
     depends_on: 
       - db
@@ -71,7 +71,7 @@ services:
 #
   baculum-web:
     build: baculum-web/
-    image: gpmidi/baculum-web:13.0.1
+    image: gpmidi/baculum-web:13.0.3
     restart: unless-stopped
     depends_on: 
       - baculum-api

@@ -1,15 +1,15 @@
-# Bacula 13.0.1 Container
+# Bacula 13.0.3 Container
 
 Deploy the bacula community edition on Docker Containers. 
 
 ## Images
 
-- [x] Bacula Catalog                    gpmidi/bacula-catalog:13.0.1
-- [x] Bacula Director                   gpmidi/bacula-director:13.0.1
-- [x] Bacula Storage Daemon             gpmidi/bacula-storage:13.0.1
-- [x] Bacula File Daemon                gpmidi/bacula-client:13.0.1
-- [x] Baculum Web Gui                   gpmidi/baculum-web:13.0.1
-- [x] Baculum API                       gpmidi/baculum-api:13.0.1
+- [x] Bacula Catalog                    gpmidi/bacula-catalog:13.0.3
+- [x] Bacula Director                   gpmidi/bacula-director:13.0.3
+- [x] Bacula Storage Daemon             gpmidi/bacula-storage:13.0.3
+- [x] Bacula File Daemon                gpmidi/bacula-client:13.0.3
+- [x] Baculum Web Gui                   gpmidi/baculum-web:13.0.3
+- [x] Baculum API                       gpmidi/baculum-api:13.0.3
 - [ ] Postfix SMTP Relay                FIXME
 - [ ] SMTP2TG SMTP Relay to Telegram    FIXME
 
@@ -48,7 +48,7 @@ docker-compose.yaml
     version: '3.1'
     services:
       db:
-        image: gpmidi/bacula-catalog:13.0.1
+        image: gpmidi/bacula-catalog:13.0.3
         restart: unless-stopped
         environment:
           POSTGRES_PASSWORD: bacula
@@ -59,7 +59,7 @@ docker-compose.yaml
         ports:
           - 5432
       bacula-dir:
-        image: gpmidi/bacula-director:13.0.1
+        image: gpmidi/bacula-director:13.0.3
         restart: unless-stopped
         volumes:
           - ./etc/bacula-dir.conf:/opt/bacula/etc/bacula-dir.conf:ro
@@ -69,7 +69,7 @@ docker-compose.yaml
         ports:
           - 9101
       bacula-sd:
-        image: gpmidi/bacula-storage:13.0.1
+        image: gpmidi/bacula-storage:13.0.3
         restart: unless-stopped
         depends_on:
           - bacula-dir
@@ -79,7 +79,7 @@ docker-compose.yaml
         ports:
           - 9103
       bacula-fd:
-        image: gpmidi/bacula-client:13.0.1
+        image: gpmidi/bacula-client:13.0.3
         restart: unless-stopped
         depends_on:
           - bacula-sd
