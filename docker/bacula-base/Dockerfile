@@ -1,7 +1,7 @@
 ARG EL_VERSION="8"
 FROM rockylinux/rockylinux:${EL_VERSION}
 MAINTAINER Paulson McIntyre <paul+ftec-bacula@gpmidi.net>
-# Enterprise Linux Version (ex 7, 8, 9)
+# Enterprise Linux Version (eg 7, 8, 9)
 ARG EL_VERSION
 # get your key on: https://www.bacula.org/bacula-binary-package-download/
 ARG BACULA_KEY
@@ -13,7 +13,7 @@ ARG EMAIL=paul+ftec-bacula@gpmidi.net
 # Optional Debug stuff
 #RUN echo "Bacula Version: $BACULA_VERSION"
 #RUN echo "Key: $BACULA_KEY"
-#RUN echo "EL Version: $EL_VERSION"
+#RUN echo "EL Version: $EL_VERSION"q
 
 RUN rpm --import "https://www.bacula.org/downloads/Bacula-4096-Distribution-Verification-key.asc"
 
