@@ -15,7 +15,7 @@ ARG EMAIL=paul+ftec-bacula@gpmidi.net
 #RUN echo "Key: $BACULA_KEY"
 #RUN echo "EL Version: $EL_VERSION"
 
-RUN rpm --import https://www.bacula.org/downloads/Bacula-4096-Distribution-Verification-key.asc
+RUN rpm --import "https://www.baculasystems.com/dl/$BACULA_KEY/BaculaSystems-Public-Signature-08-2017.asc"
 
 COPY bacula-community.repo /etc/yum.repos.d/bacula-community.repo
 RUN sed -i "s/BACULA_VERSION/$BACULA_VERSION/g" /etc/yum.repos.d/bacula-community.repo \
