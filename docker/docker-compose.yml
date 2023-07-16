@@ -6,9 +6,9 @@ services:
     image: gpmidi/bacula-catalog:latest
     restart: unless-stopped
     environment:
-      POSTGRES_PASSWORD: bacula
-      POSTGRES_USER: bacula
-      POSTGRES_DB: bacula
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - type: bind
         source: ./pgdata
