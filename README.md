@@ -34,6 +34,21 @@ Deploy the bacula community edition on Docker Containers.
     > bconsole
     * 
     
+## Build
+
+### Base Docker image
+
+```shell
+cd bacula-base
+BACULA_KEY=<put-bacla-repo-key-here> docker buildx build --load \
+       --no-cache \
+       --tag gpmidi/bacula-base:latest \
+       --platform linux/amd64 \
+       --build-arg EL_VERSION=8 \
+       --build-arg BACULA_KEY=${BACULA_KEY} \
+       --build-arg BACULA_VERSION=13.0.3 \
+       -f Dockerfile .
+```
     
 ## Video
 
