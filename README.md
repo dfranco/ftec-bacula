@@ -45,7 +45,7 @@ Deploy Bacula community edition using Docker and docker-compose.
 ### Base Docker image
 
 ```shell
-cd bacula-base
+cd docker/bacula-base
 BACULA_KEY=<put-bacla-repo-key-here> docker buildx build --load \
        --no-cache \
        --tag gpmidi/bacula-base:latest \
