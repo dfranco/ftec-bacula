@@ -1,6 +1,12 @@
-# Bacula 13.0.3 Container
+# Running Bacula using Docker
 
-Deploy the bacula community edition on Docker Containers. 
+## About
+
+This repo is based from [gpmidi/ftec-bacula](https://github.com/gpmidi/ftec-bacula) repository (great work).
+
+## What
+
+Deploy Bacula community edition using Docker and docker-compose.
 
 ## Images
 
